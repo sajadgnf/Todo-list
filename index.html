@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/styles/css/style.css">
+    <title>Todo List</title>
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <h1 class="header">Todo List</h1>
+
+            <!-- Bild Todo -->
+            <form class="todo_form">
+                <input id="todo_input" type="text" placeholder="Write Down Your Project">
+                <p class="error"></p>
+                <div class="btns">
+                    <button class="add_btn btn">Add</button>
+                    <button class="remove_btn btn">Remove Completed</button>
+                </div>
+            </form>
+
+            <!-- Show Todo -->
+            <section class="show_case">
+                <div id="todo" class="case">
+                    <h2 class="todo_header">Todo</h2>
+                    <div class="todo_items todo"></div>
+                </div>
+                <div id="done" class="case">
+                    <h2 class="done_header">Done</h2>
+                    <div class="todo_items done"></div>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

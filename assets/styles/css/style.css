@@ -1,0 +1,158 @@
+@font-face {
+  font-family: kanit-light;
+  src: url(../../fonts/Kanit-Light.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: kanit-light;
+}
+
+body {
+  background: #9bffff;
+  background: radial-gradient(circle, #9bffff 0%, #d0d0d0 0%, white 100%);
+}
+
+.container {
+  padding: 0 200px;
+}
+
+.header {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 2rem;
+}
+
+.todo_form {
+  margin: 40px 0;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.todo_form #todo_input {
+  box-shadow: 0 0 5px 0 #333;
+  border: 1px solid #333;
+  width: 100%;
+  padding: 15px 10px;
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: end;
+  margin: 5px 0;
+}
+.btns .btn {
+  box-shadow: 0 0 5px 0 #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.15s ease;
+  margin: 0 3px;
+}
+.btns .btn:active {
+  transform: scale(0.99);
+  transition: all 0.15s ease;
+}
+.btns .add_btn {
+  background-color: #337ab7;
+  padding: 10px 50px;
+}
+.btns .remove_btn {
+  background-color: #f0ad4e;
+  padding: 10px 10px;
+}
+
+.show_case {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.show_case .case {
+  width: 50%;
+  text-align: center;
+  height: 200px;
+  margin: 60px 0;
+}
+.show_case .case h2 {
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 0;
+}
+.show_case .case .todo_header {
+  background-color: #078ecc;
+}
+.show_case .case .done_header {
+  background-color: #cc0707;
+}
+
+.todo_items .todo_item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #078ecc;
+  padding: 40px;
+  border-radius: 5px;
+  height: 60px;
+  font-size: 15px;
+}
+.todo_items .todo_tick {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+.todo_items .fa-check {
+  color: #1ffdb3;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.error {
+  color: #be0303;
+  position: absolute;
+  top: 65px;
+  left: 5px;
+}
+
+@media (max-width: 1000px) {
+  .show_case {
+    flex-direction: column;
+  }
+  .show_case .case {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .container {
+    padding: 0 60px;
+  }
+
+  .btns {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    margin: 5px 0 !important;
+  }
+
+  .error {
+    top: -25px;
+  }
+}
+@media (max-width: 500px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

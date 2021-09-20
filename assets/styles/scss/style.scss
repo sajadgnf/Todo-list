@@ -1,0 +1,181 @@
+@import "../scss/functions";
+
+@font-face {
+    font-family: kanit-light;
+    src: url(../../fonts/Kanit-Light.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: kanit-light;
+}
+
+body {
+    background: rgb(155, 255, 255);
+    background: radial-gradient(
+        circle,
+        rgba(155, 255, 255, 1) 0%,
+        rgba(208, 208, 208, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
+}
+
+.container {
+    padding: 0 200px;
+}
+
+// Page Header
+.header {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2rem;
+}
+
+// Bild Todo
+.todo_form {
+    margin: 40px 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+
+    #todo_input {
+        @include shadowStyle;
+        border: 1px solid #333;
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 5px;
+        outline: none;
+        font-size: 18px;
+    }
+}
+
+.btns {
+    @include flexStyle;
+    justify-content: end;
+    margin: 5px 0;
+
+    .btn {
+        @include shadowStyle;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #fff;
+        transition: all 0.15s ease;
+        margin: 0 3px;
+
+        &:active {
+            transform: scale(0.99);
+            transition: all 0.15s ease;
+        }
+    }
+
+    .add_btn {
+        background-color: #337ab7;
+        padding: 10px 50px;
+    }
+
+    .remove_btn {
+        background-color: #f0ad4e;
+        padding: 10px 10px;
+    }
+}
+
+// Show Todo
+.show_case {
+    @include flexStyle;
+
+    // Todo Box
+    .case {
+        width: 50%;
+        text-align: center;
+        height: 200px;
+        margin: 60px 0;
+
+        h2 {
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px 0;
+        }
+
+        .todo_header {
+            background-color: #078ecc;
+        }
+
+        .done_header {
+            background-color: #cc0707;
+        }
+    }
+}
+
+// Todo Item
+.todo_items {
+    .todo_item {
+        @include flexStyle;
+        justify-content: space-between;
+        border: 1px solid #078ecc;
+        padding: 40px;
+        border-radius: 5px;
+        height: 60px;
+        font-size: 15px;
+    }
+
+    .todo_tick {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1px solid #333;
+        cursor: pointer;
+    }
+
+    .fa-check {
+        color: rgb(31, 253, 179);
+        font-size: 25px;
+        cursor: pointer;
+    }
+}
+
+// Empty Frame Error
+.error {
+    color: rgb(190, 3, 3);
+    position: absolute;
+    top: 65px;
+    left: 5px;
+}
+
+// Media
+@include media(L) {
+    .show_case {
+        flex-direction: column;
+
+        .case {
+            width: 100%;
+        }
+    }
+}
+
+@include media(M) {
+    .container {
+        padding: 0 60px;
+    }
+
+    .btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        margin: 5px 0 !important;
+    }
+
+    .error {
+        top: -25px;
+    }
+}
+
+@include media(S) {
+    .container {
+        padding: 20px;
+    }
+}

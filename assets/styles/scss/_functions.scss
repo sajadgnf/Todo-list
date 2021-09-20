@@ -1,0 +1,29 @@
+@mixin flexStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin shadowStyle {
+    box-shadow: 0 0 5px 0 #333;
+}
+
+@mixin media($size) {
+    @if($size == L) {
+        @media (max-width: 1000px) {
+            @content;
+        }
+    }
+     
+     @else if($size == M) {
+         @media (max-width: 900px) {
+             @content;
+         }
+     }
+
+     @else if($size == S) {
+         @media (max-width: 500px) {
+             @content;
+         }
+     }
+}
