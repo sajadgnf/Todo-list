@@ -111,6 +111,8 @@ body {
 
 // Todo Item
 .todo_items {
+    min-height: 300px;
+
     .todo_item {
         @include flexStyle;
         justify-content: space-between;

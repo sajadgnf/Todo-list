@@ -27,12 +27,18 @@ const clearError = () => {
 const bildTodo = () => {
     todoBox.innerHTML = ""
     doneBox.innerHTML = ""
+    var counter = 1
 
     // Active Project
-    todoList.forEach(item => {
+    todoList.forEach((item, index) => {
         // Todo Item
         let todoItem = $.createElement("div")
         todoItem.setAttribute("class", "todo_item")
+        todoItem.setAttribute("id", counter + "item")
+        todoItem.addEventListener("dragstart", event => {
+            event.dataTransfer.setData("done", event.target.id)
+            todoList.splice(index, 1)
+        })
 
         // Todo Text
         let todoText = $.createElement("h3")
@@ -41,19 +47,26 @@ const bildTodo = () => {
         // Tick Icon
         let todoTick = $.createElement("i")
         todoTick.classList.add("todo_tick")
-        todoTick.addEventListener("click", event => {
-            tickDoneProject(todoItem, event)
+        todoTick.addEventListener("click", () => {
+            tickDoneProject(todoItem, index)
         })
 
         todoItem.append(todoText, todoTick)
         todoBox.appendChild(todoItem)
+
+        counter++
     })
 
     // doneProject
-    doneList.forEach(element => {
+    doneList.forEach((element, index) => {
         // Todo Item
         let todoItem = $.createElement("div")
         todoItem.setAttribute("class", "todo_item")
+        todoItem.setAttribute("id", counter + "item")
+        todoItem.addEventListener("dragstart", event => {
+            event.dataTransfer.setData("do", event.target.id)
+            doneList.splice(index, 1)
+        })
 
         // Todo Text
         let todoText = $.createElement("h3")
@@ -64,12 +77,14 @@ const bildTodo = () => {
         // Tick Icon
         let todoTick = $.createElement("i")
         todoTick.classList.add("fa", "fa-check")
-        todoTick.addEventListener("click", event => {
-            tickDoneProject(todoItem, event)
+        todoTick.addEventListener("click", () => {
+            tickDoneProject(todoItem, index)
         })
 
         todoItem.append(todoText, todoTick)
         doneBox.append(todoItem)
+
+        counter++
     })
 }
 
@@ -90,15 +105,17 @@ const addTodo = event => {
 }
 
 // Tick Done Project
-const tickDoneProject = (item, event, index) => {
-    if (event.target.className == "todo_tick") {
+const tickDoneProject = (item, index) => {
+    if (item.lastElementChild.className == "todo_tick") {
         doneList.push(item.firstElementChild.innerHTML)
         todoList.splice(index, 1)
+        console.log(index)
     }
 
     else {
         todoList.push(item.firstElementChild.innerHTML)
         doneList.splice(index, 1)
+        console.log(index)
     }
 
     localStorage.setItem("doneList", JSON.stringify(doneList))
@@ -117,6 +134,30 @@ const removeTodo = event => {
     fetchTodoList()
 }
 
+// Drag Done Items
+const dropDoneItems = (event, index) => {
+    let getItem = event.dataTransfer.getData("done")
+    event.target.append($.getElementById(getItem))
+    doneList.push($.getElementById(getItem).firstElementChild.innerHTML)
+    bildTodo()
+
+    localStorage.setItem("doneList", JSON.stringify(doneList))
+    localStorage.setItem("todoList", JSON.stringify(todoList))
+    fetchTodoList()
+}
+
+// Drag Do Items
+const dropDoItems = (event, index) => {
+    let getItems = event.dataTransfer.getData("do")
+    event.target.append($.getElementById(getItems))
+    todoList.push($.getElementById(getItems).firstElementChild.innerHTML)
+    bildTodo()
+
+    localStorage.setItem("doneList", JSON.stringify(doneList))
+    localStorage.setItem("todoList", JSON.stringify(todoList))
+    fetchTodoList()
+}
+
 // fetchTodoList
 const fetchTodoList = () => {
     if (localStorage.getItem("todoList") && localStorage.getItem("doneList")) {
@@ -132,8 +173,13 @@ const fetchTodoList = () => {
     bildTodo()
 }
 
+
 // Events
 addTodoBtn.addEventListener("click", addTodo)
 inputTodo.addEventListener("focus", clearError)
 removeTodoBtn.addEventListener("click", removeTodo)
+doneBox.addEventListener("drop", dropDoneItems)
+todoBox.addEventListener("drop", dropDoItems)
+doneBox.addEventListener("dragover", event => event.preventDefault())
+todoBox.addEventListener("dragover", event => event.preventDefault())
 fetchTodoList()

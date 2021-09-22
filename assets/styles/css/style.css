@@ -92,6 +92,9 @@ body {
   background-color: #cc0707;
 }
 
+.todo_items {
+  min-height: 300px;
+}
 .todo_items .todo_item {
   display: flex;
   justify-content: center;
