@@ -34,6 +34,7 @@ const bildTodo = () => {
         // Todo Item
         let todoItem = $.createElement("div")
         todoItem.setAttribute("class", "todo_item")
+        todoItem.classList.remove("active")
         todoItem.setAttribute("id", counter + "item")
         todoItem.addEventListener("dragstart", event => {
             event.dataTransfer.setData("done", event.target.id)
@@ -61,7 +62,7 @@ const bildTodo = () => {
     doneList.forEach((element, index) => {
         // Todo Item
         let todoItem = $.createElement("div")
-        todoItem.setAttribute("class", "todo_item")
+        todoItem.setAttribute("class", "todo_item active")
         todoItem.setAttribute("id", counter + "item")
         todoItem.addEventListener("dragstart", event => {
             event.dataTransfer.setData("do", event.target.id)
@@ -134,8 +135,8 @@ const removeTodo = event => {
     fetchTodoList()
 }
 
-// Drag Done Items
-const dropDoneItems = (event, index) => {
+// Drop Done Items
+const dropDoneItems = event => {
     let getItem = event.dataTransfer.getData("done")
     event.target.append($.getElementById(getItem))
     doneList.push($.getElementById(getItem).firstElementChild.innerHTML)
@@ -146,8 +147,8 @@ const dropDoneItems = (event, index) => {
     fetchTodoList()
 }
 
-// Drag Do Items
-const dropDoItems = (event, index) => {
+// Drop Do Items
+const dropDoItems = event => {
     let getItems = event.dataTransfer.getData("do")
     event.target.append($.getElementById(getItems))
     todoList.push($.getElementById(getItems).firstElementChild.innerHTML)

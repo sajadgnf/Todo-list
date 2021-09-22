@@ -138,6 +138,10 @@ body {
     }
 }
 
+.active{
+    border: 1px solid #cc0707 !important;
+}
+
 // Empty Frame Error
 .error {
     color: rgb(190, 3, 3);

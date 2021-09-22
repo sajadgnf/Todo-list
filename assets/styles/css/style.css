@@ -119,6 +119,10 @@ body {
   cursor: pointer;
 }
 
+.active {
+  border: 1px solid #cc0707 !important;
+}
+
 .error {
   color: #be0303;
   position: absolute;
